@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Modal from "./Modal";
 import "./ProductCRUD.css";
 
 const ProductCRUD = () => {
@@ -12,6 +13,8 @@ const ProductCRUD = () => {
         image: null,
     });
     const [editProduct, setEditProduct] = useState(null);
+    const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
     useEffect(() => {
         fetchProducts();
@@ -66,6 +69,7 @@ const ProductCRUD = () => {
                 description: "",
                 image: null,
             });
+            setIsAddModalOpen(false);
         } catch (error) {
             console.error("Error adding product:", error);
         }
@@ -81,6 +85,7 @@ const ProductCRUD = () => {
             description: product.description,
             image: null,
         });
+        setIsEditModalOpen(true);
     };
 
     const handleUpdateProduct = async (e) => {
@@ -107,6 +112,7 @@ const ProductCRUD = () => {
                 description: "",
                 image: null,
             });
+            setIsEditModalOpen(false);
         } catch (error) {
             console.error("Error updating product:", error);
         }
@@ -123,49 +129,118 @@ const ProductCRUD = () => {
         }
     };
 
+    const openAddModal = () => {
+        setIsAddModalOpen(true);
+    };
+
+    const closeAddModal = () => {
+        setIsAddModalOpen(false);
+    };
+
+    const openEditModal = () => {
+        setIsEditModalOpen(true);
+    };
+
+    const closeEditModal = () => {
+        setIsEditModalOpen(false);
+    };
+
     return (
         <div className="product-crud">
             <h2>Product CRUD</h2>
 
-            {/* Add Product Form */}
-            <form onSubmit={editProduct ? handleUpdateProduct : handleAddProduct}>
-                <input
-                    type="text"
-                    name="name"
-                    value={newProduct.name}
-                    onChange={handleInputChange}
-                    placeholder="Name"
-                />
-                <input
-                    type="number"
-                    name="shop_id"
-                    value={newProduct.shop_id}
-                    onChange={handleInputChange}
-                    placeholder="Shop ID"
-                />
-                <input
-                    type="number"
-                    name="category_id"
-                    value={newProduct.category_id}
-                    onChange={handleInputChange}
-                    placeholder="Category ID"
-                />
-                <input
-                    type="number"
-                    name="price"
-                    value={newProduct.price}
-                    onChange={handleInputChange}
-                    placeholder="Price"
-                />
-                <textarea
-                    name="description"
-                    value={newProduct.description}
-                    onChange={handleInputChange}
-                    placeholder="Description"
-                ></textarea>
-                <input type="file" name="image" onChange={handleImageChange} />
-                <button type="submit">{editProduct ? "Update" : "Add"} Product</button>
-            </form>
+            {/* Add Product Button */}
+            <button onClick={openAddModal}>Add Product</button>
+
+            {/* Add Product Modal */}
+            {isAddModalOpen && (
+                <Modal onClose={closeAddModal}>
+                    <h3>Add Product</h3>
+                    <form onSubmit={handleAddProduct}>
+                        <input
+                            type="text"
+                            name="name"
+                            value={newProduct.name}
+                            onChange={handleInputChange}
+                            placeholder="Name"
+                        />
+                        <input
+                            type="number"
+                            name="shop_id"
+                            value={newProduct.shop_id}
+                            onChange={handleInputChange}
+                            placeholder="Shop ID"
+                        />
+                        <input
+                            type="number"
+                            name="category_id"
+                            value={newProduct.category_id}
+                            onChange={handleInputChange}
+                            placeholder="Category ID"
+                        />
+                        <input
+                            type="number"
+                            name="price"
+                            value={newProduct.price}
+                            onChange={handleInputChange}
+                            placeholder="Price"
+                        />
+                        <textarea
+                            name="description"
+                            value={newProduct.description}
+                            onChange={handleInputChange}
+                            placeholder="Description"
+                        ></textarea>
+                        <input type="file" name="image" onChange={handleImageChange} />
+                        <button type="submit">Add Product</button>
+                    </form>
+                </Modal>
+            )}
+
+            {/* Edit Product Modal */}
+            {isEditModalOpen && (
+                <Modal onClose={closeEditModal}>
+                    <h3>Edit Product</h3>
+                    <form onSubmit={handleUpdateProduct}>
+                        <input
+                            type="text"
+                            name="name"
+                            value={newProduct.name}
+                            onChange={handleInputChange}
+                            placeholder="Name"
+                        />
+                        <input
+                            type="number"
+                            name="shop_id"
+                            value={newProduct.shop_id}
+                            onChange={handleInputChange}
+                            placeholder="Shop ID"
+                        />
+                        <input
+                            type="number"
+                            name="category_id"
+                            value={newProduct.category_id}
+                            onChange={handleInputChange}
+                            placeholder="Category ID"
+                        />
+                        <input
+                            type="number"
+                            name="price"
+                            value={newProduct.price}
+                            onChange={handleInputChange}
+                            placeholder="Price"
+                        />
+                        <textarea
+                            name="description"
+                            value={newProduct.description}
+                            onChange={handleInputChange}
+                            placeholder="Description"
+                        ></textarea>
+                        <input type="file" name="image" onChange={handleImageChange} />
+                        <button type="submit">Update Product</button>
+                    </form>
+                </Modal>
+            )}
 
             {/* Product List */}
             <ul className="product-list">
@@ -177,9 +252,7 @@ const ProductCRUD = () => {
                             <p>Category ID: {product.category_id}</p>
                             <p>Price: {product.price}</p>
                             <p>Description: {product.description}</p>
-                            <button onClick={() => handleEditProduct(product)}>
-                                Edit
-                            </button>
+                            <button onClick={() => handleEditProduct(product)}>Edit</button>
                             <button onClick={() => handleDeleteProduct(product.id)}>
                                 Delete
                             </button>
