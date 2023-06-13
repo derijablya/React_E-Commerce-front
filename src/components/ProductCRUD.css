@@ -1,9 +1,11 @@
 .product-crud {
-    width: 500px;
+    width: 100%;
+    max-width: 500px;
     margin: 0 auto;
     padding: 20px;
-    border: 1px solid #ccc;
-    display: grid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .product-crud h2 {
@@ -25,32 +27,47 @@
 }
 
 .product-crud button {
-    background-color: #4caf50;
+    background-color: #060a06;
     color: #fff;
     border: none;
     cursor: pointer;
 }
 
 .product-crud ul {
-    list-style: none;
-    padding: 0;
+    padding: 2em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.product-crud .product-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
 }
 
 .product-crud li {
+    flex: 1 1 300px;
     display: flex;
-    margin-bottom: 20px;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #ccc;
+    padding: 20px;
 }
 
 .product-crud .product-info {
-    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
+
 
 .product-crud .product-image {
     flex: 1;
-    margin-left: 20px;
 }
 
 .product-crud img {
-    max-width: 100%;
+    max-width: 2em;
     height: auto;
 }

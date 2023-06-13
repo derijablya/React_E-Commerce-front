@@ -22,7 +22,7 @@ const ProductCRUD = () => {
 
     const fetchProducts = async () => {
         try {
-            const response = await fetch("http://localhost:8080/item/");
+            const response = await fetch("https://a992-31-155-17-143.ngrok-free.app/item/");
             const data = await response.json();
             setProducts(data);
         } catch (error) {
@@ -246,7 +246,9 @@ const ProductCRUD = () => {
             <ul className="product-list">
                 {products.map((product) => (
                     <li key={product.id}>
+
                         <div className="product-info">
+                            <img src={product.image} alt={product.name} />
                             <h3>{product.name}</h3>
                             <p>Shop ID: {product.shop_id}</p>
                             <p>Category ID: {product.category_id}</p>
@@ -257,9 +259,7 @@ const ProductCRUD = () => {
                                 Delete
                             </button>
                         </div>
-                        <div className="product-image">
-                            <img src={product.image} alt={product.name} />
-                        </div>
+
                     </li>
                 ))}
             </ul>
