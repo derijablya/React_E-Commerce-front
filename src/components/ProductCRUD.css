@@ -1,0 +1,55 @@
+.product-crud {
+    width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
+.product-crud h2 {
+    text-align: center;
+}
+
+.product-crud form {
+    margin-bottom: 20px;
+}
+
+.product-crud input,
+.product-crud textarea,
+.product-crud button {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 5px;
+    font-size: 16px;
+}
+
+.product-crud button {
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.product-crud ul {
+    list-style: none;
+    padding: 0;
+}
+
+.product-crud li {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.product-crud .product-info {
+    flex: 1;
+}
+
+.product-crud .product-image {
+    flex: 1;
+    margin-left: 20px;
+}
+
+.product-crud img {
+    max-width: 100%;
+    height: auto;
+}

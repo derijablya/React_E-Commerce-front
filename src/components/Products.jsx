@@ -9,8 +9,9 @@ import { Link } from "react-router-dom";
 
 const Products = () => {
     const [data, setData] = useState([]);
-    const [filter, setFilter] = useState(data);
+    const [filter, setFilter] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [categories, setCategories] = useState([]);
     let componentMounted = true;
 
     const dispatch = useDispatch();
@@ -22,7 +23,7 @@ const Products = () => {
     useEffect(() => {
         const getProducts = async () => {
             setLoading(true);
-            const response = await fetch("http://localhost:8080/item");
+            const response = await fetch("http://localhost:8080/item/");
             const responseData = await response.json();
             if (componentMounted) {
                 setData(responseData);
@@ -36,6 +37,20 @@ const Products = () => {
         return () => {
             componentMounted = false;
         };
+    }, []);
+
+    useEffect(() => {
+        const fetchCategories = async () => {
+            try {
+                const response = await fetch("http://localhost:8080/category/"); // Replace API_URL with the actual URL of the categories API
+                const data = await response.json();
+                setCategories(data);
+            } catch (error) {
+                console.log("Error fetching categories:", error);
+            }
+        };
+
+        fetchCategories();
     }, []);
 
     const Loading = () => {
@@ -64,6 +79,10 @@ const Products = () => {
     };
 
     const ShowProducts = () => {
+        if (!Array.isArray(filter)) {
+            throw new Error("Filter should be an array");
+        }
+
         return (
             <>
                 <div className="buttons text-center py-5">
@@ -73,31 +92,15 @@ const Products = () => {
                     >
                         All
                     </button>
-                    <button
-                        className="btn btn-outline-dark btn-sm m-2"
-                        onClick={() => filterProduct(1)}
-                    >
-                        Men's Clothing
-                    </button>
-                    <button
-                        className="btn btn-outline-dark btn-sm m-2"
-                        onClick={() => filterProduct(2)}
-                    >
-                        Women's Clothing
-                    </button>
-                    <button
-                        className="btn btn-outline-dark btn-sm m-2"
-                        onClick={() => filterProduct(3)}
-                    >
-                        Jewelery
-                    </button>
-                    <button
-                        className="btn btn-outline-dark btn-sm m-2"
-                        onClick={() => filterProduct(4)}
-                    >
-                        Electronics
-                    </button>
-
+                    {categories.map((category) => (
+                        <button
+                            className="btn btn-outline-dark btn-sm m-2"
+                            onClick={() => filterProduct(category.id)}
+                            key={category.id}
+                        >
+                            {category.name}
+                        </button>
+                    ))}
                 </div>
 
                 {filter.map((product) => {
