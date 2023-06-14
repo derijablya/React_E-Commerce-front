@@ -22,7 +22,8 @@ const ProductCRUD = () => {
 
     const fetchProducts = async () => {
         try {
-            const response = await fetch("https://a992-31-155-17-143.ngrok-free.app/item/");
+            const response = await fetch("https://localhost:8080/item/",
+                );
             const data = await response.json();
             setProducts(data);
         } catch (error) {

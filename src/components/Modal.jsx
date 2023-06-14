@@ -11,13 +11,14 @@ const Modal = ({ children, onClose }) => {
     return (
         <div className="modal-backdrop" onClick={handleBackdropClick}>
             <div className="modal-content">
+                {children}
                 <button className="modal-close" onClick={onClose}>
                     Close
                 </button>
-                {children}
             </div>
         </div>
     );
 };
+
 
 export default Modal;
