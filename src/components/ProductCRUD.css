@@ -71,3 +71,7 @@
     max-width: 2em;
     height: auto;
 }
+
+.product-crud .product-element {
+    width: 3em;
+}

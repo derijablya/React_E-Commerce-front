@@ -12,7 +12,8 @@ const ProductCRUD = () => {
         description: "",
         image: null,
     });
-    const [editProduct, setEditProduct] = useState(null);
+
+        const [editProduct, setEditProduct] = useState(null);
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
@@ -22,7 +23,13 @@ const ProductCRUD = () => {
 
     const fetchProducts = async () => {
         try {
-            const response = await fetch("https://localhost:8080/item/",
+            const response = await fetch("https://f849-31-155-17-143.ngrok-free.app/item/",
+                {
+                    headers: {
+                        "ngrok-skip-browser-warning": "69420",
+                        "Access-Control-Allow-Origin": "f849-31-155-17-143.ngrok-free.app"
+                    }
+                }
                 );
             const data = await response.json();
             setProducts(data);
@@ -249,14 +256,14 @@ const ProductCRUD = () => {
                     <li key={product.id}>
 
                         <div className="product-info">
-                            <img src={product.image} alt={product.name} />
-                            <h3>{product.name}</h3>
-                            <p>Shop ID: {product.shop_id}</p>
-                            <p>Category ID: {product.category_id}</p>
-                            <p>Price: {product.price}</p>
-                            <p>Description: {product.description}</p>
-                            <button onClick={() => handleEditProduct(product)}>Edit</button>
-                            <button onClick={() => handleDeleteProduct(product.id)}>
+                            <img src={product.image} alt={product.name} className = "product-element"/>
+                            <h3 className = "product-element">{product.name}</h3>
+                            <p className = "product-element">Shop ID: {product.shop_id}</p>
+                            <p className = "product-element">Category ID: {product.category_id}</p>
+                            <p className = "product-element">Price: {product.price}</p>
+                            <p className = "product-element">Description: {product.description}</p>
+                            <button className = "product-element" onClick={() => handleEditProduct(product)}>Edit</button>
+                            <button className = "product-element" onClick={() => handleDeleteProduct(product.id)}>
                                 Delete
                             </button>
                         </div>

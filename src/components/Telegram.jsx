@@ -13,7 +13,7 @@ const MyComponent = () => {
                 dataOnauth={handleTelegramResponse}
                 botName="ecommerce_testbot"
                 buttonSize="large"
-                dataAuthUrl="https://f689-31-155-31-33.ngrok-free.app/product"
+                dataAuthUrl="f849-31-155-17-143.ngrok-free.app/product"
             />
         </div>
     );
