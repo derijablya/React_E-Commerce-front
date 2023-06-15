@@ -159,7 +159,7 @@ const ProductCRUD = () => {
       <h2>Product CRUD</h2>
 
       {/* Add Product Button */}
-      <button onClick={openAddModal}>Add Product</button>
+      <button onClick={openAddModal} className="btn-add">Add Product</button>
 
       {/* Add Product Modal */}
       {isAddModalOpen && (
@@ -279,13 +279,13 @@ const ProductCRUD = () => {
               </p>
               <div className="button-container">
                 <button
-                  className="product-button"
+                  className="product-button btn btn-outline-dark m-2 btn-edit"
                   onClick={() => handleEditProduct(product)}
                 >
                   Edit
                 </button>
                 <button
-                  className="product-button"
+                  className="product-button btn btn-outline-dark m-2 btn-delete"
                   onClick={() => handleDeleteProduct(product.id)}
                 >
                   Delete

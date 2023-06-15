@@ -1,0 +1,32 @@
+.panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.panel-items {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.panel-item {
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    color: #000;
+    border: none;
+    border-radius: 20px; /* Rounded corners */
+}
+
+.panel-item.active {
+    /* Add any specific styles for the active item if needed */
+    /* For example, change the background color */
+    background-color: #e0e0e0;
+}
+
+.panel-content {
+    /* Add any styles for the content container if needed */
+}
