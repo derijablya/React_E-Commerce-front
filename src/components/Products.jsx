@@ -23,7 +23,13 @@ const Products = () => {
     useEffect(() => {
         const getProducts = async () => {
             setLoading(true);
-            const response = await fetch("http://localhost:8080/item/");
+            const response = await fetch("http://localhost:8080/item/", {
+                headers: {
+                    "ngrok-skip-browser-warning": "69420",
+                        "Access-Control-Allow-Origin": "telecommerce.vercel.app",
+                },
+            }
+        );
             const responseData = await response.json();
             if (componentMounted) {
                 setData(responseData);
