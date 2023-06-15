@@ -1,10 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import {fetchToken} from "./Auth";
 
 const Navbar = () => {
     const hideButtons = useSelector((state) => state.hideButtons);
     const state = useSelector((state) => state.handleCart);
+    let auth = fetchToken()
 
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light py-3 sticky-top">
@@ -48,22 +50,28 @@ const Navbar = () => {
                         </li>
                     </ul>
                     <div className="buttons text-center">
-                        {!hideButtons && (
+
+                        {!auth ? (
                             <>
-                                <NavLink to="/login" className="btn btn-outline-dark m-2">
-                                    <i className="fa fa-sign-in-alt mr-1"></i> Login
-                                </NavLink>
-                                <NavLink to="/register" className="btn btn-outline-dark m-2">
-                                    <i className="fa fa-user-plus mr-1"></i> Register
-                                </NavLink>
+                            <NavLink to="/login" className="btn btn-outline-dark m-2">
+                                <i className="fa fa-sign-in-alt mr-1"></i> Login
+                            </NavLink>
+                            <NavLink to="/register" className="btn btn-outline-dark m-2">
+                                <i className="fa fa-user-plus mr-1"></i> Register
+                            </NavLink>
+                            </>
+                        ) : (
+                            <>
                                 <NavLink to="/admin" className="btn btn-outline-dark m-2">
                                     <i className="fa fa-user-cog mr-1"></i> Admin
                                 </NavLink>
+
+                                <NavLink to="/cart" className="btn btn-outline-dark m-2">
+                                <i className="fa fa-cart-shopping mr-1"></i> Cart ({state.length})
+                                </NavLink>
                             </>
                         )}
-                        <NavLink to="/cart" className="btn btn-outline-dark m-2">
-                            <i className="fa fa-cart-shopping mr-1"></i> Cart ({state.length})
-                        </NavLink>
+
                     </div>
                 </div>
             </div>

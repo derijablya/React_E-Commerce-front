@@ -24,7 +24,7 @@ const ProductCRUD = () => {
   const fetchProducts = async () => {
     try {
       const response = await fetch(
-        "https://f849-31-155-17-143.ngrok-free.app/item/",
+        "http://localhost:8080/item/",
         {
           headers: {
             "ngrok-skip-browser-warning": "69420",

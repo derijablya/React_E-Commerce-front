@@ -20,6 +20,8 @@ import {
   PageNotFound,
   AdminPanel
 } from "./pages"
+import {RequireToken} from "./components/Auth";
+import Password from "./pages/Password";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -27,7 +29,7 @@ root.render(
     <Provider store={store}>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/product" element={<Products />} />
+        <Route path="/product" element={<RequireToken><Products /></RequireToken>} />
         <Route path="/product/:id" element={<Product />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
@@ -38,6 +40,7 @@ root.render(
         <Route path="*" element={<PageNotFound />} />
         <Route path="/product/*" element={<PageNotFound />} />
         <Route path="/admin" element={<AdminPanel />} />
+        <Route path="/password" element={<Password/>} />
       </Routes>
     </Provider>
   </BrowserRouter>
