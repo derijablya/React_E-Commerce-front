@@ -65,7 +65,7 @@ const ProductCRUD = () => {
       formData.append("price", newProduct.price);
       formData.append("description", newProduct.description);
       formData.append("image", newProduct.image);
-      await fetch("/api/products", {
+      await fetch("http://localhost:8080/item/", {
         method: "POST",
         body: formData,
       });
@@ -129,7 +129,7 @@ const ProductCRUD = () => {
 
   const handleDeleteProduct = async (productId) => {
     try {
-      await fetch(`/api/products/${productId}`, {
+      await fetch(`http://localhost:8080/item/${productId}`, {
         method: "DELETE",
       });
       fetchProducts();
